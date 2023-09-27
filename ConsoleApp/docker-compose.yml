@@ -1,0 +1,12 @@
+﻿version: '3'
+
+services:
+  postgres:
+    container_name: postgres_hw_container
+    image: postgres:15.4-alpine
+    environment:
+      POSTGRES_DB: postgre
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5433:5432"
