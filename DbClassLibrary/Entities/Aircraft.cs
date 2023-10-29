@@ -14,7 +14,5 @@ namespace DbClassLibrary.Entities
         [Required]
         [Range(0, Int32.MaxValue)]
         public int Range { get; set; }
-
-
     }
 }

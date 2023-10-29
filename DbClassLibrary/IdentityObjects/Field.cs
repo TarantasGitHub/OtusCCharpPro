@@ -11,6 +11,7 @@
         public Field(string name)
         {
             this.Name = name;
+            this.Comps = new List<(string name, string op, object value)>();
         }
 
         // Ввести операцию и значение для тестирования
@@ -22,7 +23,7 @@
 
         // Comps - это массив, поэтому проверить одно поле
         // можно не одним, а несколькими способами
-        public List<(string name, string op, object value)> GetComps()
+        public IEnumerable<(string name, string op, object value)> GetComps()
         {
             return Comps;
         }
@@ -32,7 +33,7 @@
         // само поле не готовы для применения в запросе
         public bool IsIncomplete()
         {
-            return this.Comps.Any();
+            return !this.Comps.Any();
         }
     }
 }
