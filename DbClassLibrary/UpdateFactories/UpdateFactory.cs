@@ -1,12 +1,11 @@
-﻿using DbClassLibrary.IdentityObjects;
+﻿using DbClassLibraryContracts.DomainObjects;
 using System.Text;
 
 namespace DbClassLibrary.UpdateFactories
 {
-    public abstract class UpdateFactory<T> where T : IdentityObject<T>
+    public abstract class UpdateFactory
     {
-        abstract public (string query, object[] values) NewUpdate(T obj);
-        //abstract public function newUpdate(DomainObject $obj): array;
+        public abstract(string query, object[] values) NewUpdate<T, TKey>(T obj) where T : DomainObject<TKey>;
 
         protected (string where, object[] values) BuildStatement(string table, Dictionary<string, object> fields, Dictionary<string, object>? conditions = null)
         {
@@ -16,17 +15,17 @@ namespace DbClassLibrary.UpdateFactories
 
             if (conditions != null)
             {
-                sb.AppendLine($"UPDATE {table} SET ");
-                sb.Append(string.Join(" = ?, ", fields.Keys));
+                sb.AppendLine($"UPDATE \"{table}\" SET ");
+                sb.Append(string.Format("\"{0}\"", string.Join("\" = ?, \"", fields.Keys)));
                 sb.AppendLine(" = ?");
 
                 terms.AddRange(fields.Values);
                 var cond = new List<string>(capacity: conditions.Count);
-                sb.AppendLine(" WHERE ");
+                sb.Append("WHERE ");
 
                 foreach (var kvp in conditions)
                 {
-                    cond.Add($"{kvp.Key} = ?");
+                    cond.Add($"\"{kvp.Key}\" = ?");
                     terms.Add(kvp.Value);
                 }
                 sb.AppendLine(string.Join(" AND ", cond));
@@ -34,8 +33,8 @@ namespace DbClassLibrary.UpdateFactories
             }
             else
             {
-                sb.AppendLine($"INSERT INTO {table} (");
-                sb.AppendLine(string.Join(",", fields.Keys));
+                sb.AppendLine($"INSERT INTO \"{table}\" (");
+                sb.AppendLine(string.Format("\"{0}\"", string.Join("\", \"", fields.Keys)));
                 sb.Append(") VALUES (");
 
                 var qs = new List<string>(capacity: fields.Count);
@@ -44,7 +43,7 @@ namespace DbClassLibrary.UpdateFactories
                     terms.Add(kvp.Value);
                     qs.Add("?");
                 }
-                sb.Append(string.Join(",", qs));
+                sb.Append(string.Join(", ", qs));
                 sb.AppendLine(")");
                 query = sb.ToString();
             }

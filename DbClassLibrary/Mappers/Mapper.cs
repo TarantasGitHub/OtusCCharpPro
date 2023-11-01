@@ -1,11 +1,11 @@
-﻿using DbClassLibrary.Entities;
+﻿using DbClassLibraryContracts.DomainObjects;
 
 namespace DbClassLibrary.Mappers
 {
-    internal abstract class Mapper
+    internal abstract class Mapper<TSource, TKey> where TSource : DomainObject<TKey>
     {
         
-        public DomainObject Find(int id)
+        public TSource Find(TKey id)
         {
             this.SelectStmt().Execute(id);
             var row = this.SelectStmt().Fetch();
@@ -26,19 +26,19 @@ namespace DbClassLibrary.Mappers
             return obj;
         }
 
-        public DomainObject CreateObject(Dictionary<string, object> raw)
+        public TSource CreateObject(Dictionary<string, object> raw)
         {
             var obj = this.doCreateObject(raw);
             return obj;
         }
 
-        public void Insert(DomainObject obj)
+        public void Insert(TSource obj)
         {
             this.doInsert(obj);
         }
 
-        protected abstract DomainObject doCreateObject(Dictionary<string, object> raw);
-        protected abstract void doInsert(DomainObject obj);
+        protected abstract TSource doCreateObject(Dictionary<string, object> raw);
+        protected abstract void doInsert(TSource obj);
         protected abstract PDOStatement SelectStmt();
     }
 }

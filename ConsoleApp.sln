@@ -12,7 +12,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbClassLibrary.Tests", "DbClassLibrary.Tests\DbClassLibrary.Tests.csproj", "{64CA9353-FD75-4B20-B3F1-BE2FBF43BC23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbClassLibrary.Tests", "DbClassLibrary.Tests\DbClassLibrary.Tests.csproj", "{64CA9353-FD75-4B20-B3F1-BE2FBF43BC23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BussinessClassLibrary", "BussinessClassLibrary\BussinessClassLibrary.csproj", "{B8D2D2B7-F195-4740-987B-E3E41A572430}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbClassLibraryContracts", "DbClassLibraryContracts\DbClassLibraryContracts.csproj", "{AB346A45-DD99-4B92-91AD-25009F3D57E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +36,14 @@ Global
 		{64CA9353-FD75-4B20-B3F1-BE2FBF43BC23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64CA9353-FD75-4B20-B3F1-BE2FBF43BC23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64CA9353-FD75-4B20-B3F1-BE2FBF43BC23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8D2D2B7-F195-4740-987B-E3E41A572430}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8D2D2B7-F195-4740-987B-E3E41A572430}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8D2D2B7-F195-4740-987B-E3E41A572430}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8D2D2B7-F195-4740-987B-E3E41A572430}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB346A45-DD99-4B92-91AD-25009F3D57E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB346A45-DD99-4B92-91AD-25009F3D57E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB346A45-DD99-4B92-91AD-25009F3D57E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB346A45-DD99-4B92-91AD-25009F3D57E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

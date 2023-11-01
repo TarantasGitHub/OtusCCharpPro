@@ -1,8 +1,8 @@
-﻿using DbClassLibrary.Entities;
+﻿using DbClassLibraryContracts.Models;
 
 namespace DbClassLibrary.Mappers
 {
-    internal class AircraftMapper : Mapper
+    internal class AircraftMapper : Mapper<Aircraft, String>
     {
         private PDOStatement selectStmt;
         private PDOStatement updadeStmt;
@@ -15,16 +15,16 @@ namespace DbClassLibrary.Mappers
             this.insertStmt = new PDOStatement();
         }
 
-        protected override DomainObject doCreateObject(Dictionary<string, object> raw)
+        protected override Aircraft doCreateObject(Dictionary<string, object> raw)
         {
             throw new NotImplementedException();
         }
 
-        protected override void doInsert(DomainObject obj)
+        protected override void doInsert(Aircraft obj)
         {
             throw new NotImplementedException();
         }
-
+        
         protected override PDOStatement SelectStmt()
         {
             throw new NotImplementedException();

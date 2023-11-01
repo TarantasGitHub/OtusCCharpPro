@@ -9,7 +9,7 @@
 
         // Объект идентичности может быть создан пустым
         // млм же с отдельным полем
-        public IdentityObject(string field = null, string[] enForce = null)
+        public IdentityObject(string? field = null, string[]? enForce = null)
         {
             if (enForce != null)
             {
