@@ -1,4 +1,5 @@
-﻿using DbClassLibrary.UpdateFactories;
+﻿using System.Runtime.InteropServices;
+using DbClassLibrary.UpdateFactories;
 using DbClassLibraryContracts.Models;
 
 namespace DbClassLibrary.Tests.UpdateFactoryTests
@@ -16,7 +17,12 @@ namespace DbClassLibrary.Tests.UpdateFactoryTests
             var query = updateFactory.NewUpdate<Aircraft, String>(aircraft);
 
             //Assert
-            Assert.Equal("INSERT INTO \"aircrafts\" (\r\n\"AircraftCode\", \"Model\", \"Range\"\r\n) VALUES (?, ?, ?)\r\n", query.query);
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux)) {
+                Assert.Equal("INSERT INTO \"aircrafts\" (\n\"AircraftCode\", \"Model\", \"Range\"\n) VALUES (?, ?, ?)\n", query.query);
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) {
+                Assert.Equal("INSERT INTO \"aircrafts\" (\r\n\"AircraftCode\", \"Model\", \"Range\"\r\n) VALUES (?, ?, ?)\r\n", query.query);
+            }
             Assert.Collection(query.values,
                 value => { Assert.Equal(string.Empty, value); },
                 value => { Assert.Equal(string.Empty, value); },
@@ -36,7 +42,12 @@ namespace DbClassLibrary.Tests.UpdateFactoryTests
             var query = updateFactory.NewUpdate<Aircraft, String>(aircraft);
 
             //Assert
-            Assert.Equal("INSERT INTO \"aircrafts\" (\r\n\"AircraftCode\", \"Model\", \"Range\"\r\n) VALUES (?, ?, ?)\r\n", query.query);
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux)) {
+                Assert.Equal("INSERT INTO \"aircrafts\" (\n\"AircraftCode\", \"Model\", \"Range\"\n) VALUES (?, ?, ?)\n", query.query);
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) {
+                Assert.Equal("INSERT INTO \"aircrafts\" (\r\n\"AircraftCode\", \"Model\", \"Range\"\r\n) VALUES (?, ?, ?)\r\n", query.query);
+            }
             Assert.Collection(query.values,
                 value => { Assert.Equal("aircraftCode", value); },
                 value => { Assert.Equal("model", value); },
@@ -57,7 +68,12 @@ namespace DbClassLibrary.Tests.UpdateFactoryTests
             var query = updateFactory.NewUpdate<Aircraft, String>(aircraft);
 
             //Assert
-            Assert.Equal("UPDATE \"aircrafts\" SET \r\n\"AircraftCode\" = ?, \"Model\" = ?, \"Range\" = ?\r\nWHERE \"AircraftCode\" = ?\r\n", query.query);
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux)) {
+                Assert.Equal("UPDATE \"aircrafts\" SET \n\"AircraftCode\" = ?, \"Model\" = ?, \"Range\" = ?\nWHERE \"AircraftCode\" = ?\n", query.query);
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) {
+                Assert.Equal("UPDATE \"aircrafts\" SET \r\n\"AircraftCode\" = ?, \"Model\" = ?, \"Range\" = ?\r\nWHERE \"AircraftCode\" = ?\r\n", query.query);
+            }
             Assert.Collection(query.values,
                 value => { Assert.Equal("aircraftCode", value); },
                 value => { Assert.Equal("model", value); },
