@@ -1,0 +1,28 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" asp-for="Upload" multiple accept="text/plain, .csv" />
+        <input type="submit" value="Загруить" />
+    </form>
+    
+    <div>
+        <ul>
+            @foreach (var character in Model.UploadedFileInfo)
+            {
+                <li>В файле "@character.fileName" найдено "@character.spaceCount" пробелов за "@character.milliseconds" миллисекунд</li>
+            }
+        </ul>
+
+        @if (Model.TotalMilliseconds > 0)
+        {
+            <p>На обработку всех файлов ушло "@Model.TotalMilliseconds" миллисекунд</p>
+        }
+    </div>
+</div>

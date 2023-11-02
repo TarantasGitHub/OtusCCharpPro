@@ -1,0 +1,428 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{265DF82D-67CF-49D0-B702-CBECF1B0E2DE}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>ConsoleApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>CSharpHW7</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include=".git\ms-persist.xml" />
+    <Content Include="WebApplication\Pages\Shared\_Layout.cshtml.css" />
+    <Content Include="WebApplication\WebApplication.csproj.user" />
+    <Content Include="WebApplication\wwwroot\css\site.css" />
+    <Content Include="WebApplication\wwwroot\favicon.ico" />
+    <Content Include="WebApplication\wwwroot\js\site.js" />
+    <Content Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css" />
+    <Content Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css" />
+    <Content Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css" />
+    <Content Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css" />
+    <Content Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css" />
+    <Content Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css" />
+    <Content Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css" />
+    <Content Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css" />
+    <Content Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css" />
+    <Content Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css" />
+    <Content Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css" />
+    <Content Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css" />
+    <Content Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap.css" />
+    <Content Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css" />
+    <Content Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css" />
+    <Content Include="WebApplication\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js" />
+    <Content Include="WebApplication\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js" />
+    <Content Include="WebApplication\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js" />
+    <Content Include="WebApplication\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js" />
+    <Content Include="WebApplication\wwwroot\lib\bootstrap\dist\js\bootstrap.js" />
+    <Content Include="WebApplication\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
+    <Content Include="WebApplication\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+    <Content Include="WebApplication\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <Content Include="WebApplication\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt" />
+    <Content Include="WebApplication\wwwroot\lib\jquery-validation\dist\additional-methods.js" />
+    <Content Include="WebApplication\wwwroot\lib\jquery-validation\dist\additional-methods.min.js" />
+    <Content Include="WebApplication\wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
+    <Content Include="WebApplication\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js" />
+    <Content Include="WebApplication\wwwroot\lib\jquery\dist\jquery.js" />
+    <Content Include="WebApplication\wwwroot\lib\jquery\dist\jquery.min.js" />
+    <Content Include="WebApplication\wwwroot\lib\jquery\LICENSE.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".git\COMMIT_EDITMSG" />
+    <None Include=".git\config" />
+    <None Include=".git\description" />
+    <None Include=".git\FETCH_HEAD" />
+    <None Include=".git\HEAD" />
+    <None Include=".git\hooks\applypatch-msg.sample" />
+    <None Include=".git\hooks\commit-msg.sample" />
+    <None Include=".git\hooks\fsmonitor-watchman.sample" />
+    <None Include=".git\hooks\post-update.sample" />
+    <None Include=".git\hooks\pre-applypatch.sample" />
+    <None Include=".git\hooks\pre-commit.sample" />
+    <None Include=".git\hooks\pre-merge-commit.sample" />
+    <None Include=".git\hooks\pre-push.sample" />
+    <None Include=".git\hooks\pre-rebase.sample" />
+    <None Include=".git\hooks\pre-receive.sample" />
+    <None Include=".git\hooks\prepare-commit-msg.sample" />
+    <None Include=".git\hooks\push-to-checkout.sample" />
+    <None Include=".git\hooks\update.sample" />
+    <None Include=".git\index" />
+    <None Include=".git\info\exclude" />
+    <None Include=".git\logs\HEAD" />
+    <None Include=".git\logs\refs\heads\CSharpHW1" />
+    <None Include=".git\logs\refs\heads\CSharpHW7" />
+    <None Include=".git\logs\refs\heads\master" />
+    <None Include=".git\logs\refs\remotes\origin\CSharpHW1" />
+    <None Include=".git\logs\refs\remotes\origin\HEAD" />
+    <None Include=".git\logs\refs\remotes\origin\master" />
+    <None Include=".git\logs\refs\stash" />
+    <None Include=".git\objects\00\ed3ac3f967818ffe4ea7ae303c9d4de974f1bb" />
+    <None Include=".git\objects\02\5a2b43e3bace7ecd4939f4acca9548a9ab87c7" />
+    <None Include=".git\objects\03\0cca11553cd025d53a71e6d0583c530f957cb1" />
+    <None Include=".git\objects\07\af8121434c5f43456c91becf0bd4fc711d74c2" />
+    <None Include=".git\objects\09\cca310b4d25d167cc58c6c1fabd65c1780b472" />
+    <None Include=".git\objects\0a\0748998b856d5137060cb93f1c5c8d2f73b33b" />
+    <None Include=".git\objects\0f\b250353a60ba73f4750ce4a32cd58dfad216e2" />
+    <None Include=".git\objects\10\706f5dd1bcbc9fd84fdccbf95bcb47def67ee3" />
+    <None Include=".git\objects\13\4a192277c91ea3e872fe6437cfea10fefbf0b4" />
+    <None Include=".git\objects\14\eefeecb653a40baed236201a7f9adb1a7ff6ff" />
+    <None Include=".git\objects\16\e7df943564cc51ea38e1a3607ec97ea70c1a56" />
+    <None Include=".git\objects\17\ea4457bbcceb9f3f519deaa0540a4c7afc5456" />
+    <None Include=".git\objects\18\4be8b5dbee162e97a7a7bc7ca841cdc5765981" />
+    <None Include=".git\objects\1a\3309e4e9564e32c8e4a3622cc065f3decebf74" />
+    <None Include=".git\objects\1b\46221854d8e1caa8c19fe9251a18f2437c2c3f" />
+    <None Include=".git\objects\1b\47353577cdf6fa0a2d64b68a05fbf94fce2e60" />
+    <None Include=".git\objects\1b\df1cfdb4baba10479fca01f25ffaf04f9c247c" />
+    <None Include=".git\objects\1c\6a69dca79ea0aa75d0489770cddcae0d60da3e" />
+    <None Include=".git\objects\1f\4c3039b05d37870e4b2d7e00ff270d4ca4802f" />
+    <None Include=".git\objects\21\19748f8324d5b4a2b0d6c8b931e24a6c53b9b2" />
+    <None Include=".git\objects\23\a5f31b610449dec2c1883f5d928b2b13a145ea" />
+    <None Include=".git\objects\25\9fb2e6ab1a569eb043d78060a9df15ee220fee" />
+    <None Include=".git\objects\25\b5b042444b0285425b2f45e1719a2181384e34" />
+    <None Include=".git\objects\26\4a2d88537f58df84d61815ebf10ed17f6ead2a" />
+    <None Include=".git\objects\26\9be8f6c0b6718c9079023e41b4ab800b56d4cf" />
+    <None Include=".git\objects\26\b3f2dc2fb5e40b9a1dcf58f3830ca26f56374c" />
+    <None Include=".git\objects\29\c57ffb3b9072e74ef3ecee4f20569508fab355" />
+    <None Include=".git\objects\2c\484e72e347aa25865ac2f067ccb2b3f947dc3a" />
+    <None Include=".git\objects\2c\90906f23726c4d9cb299c71c31a9be3844e3d1" />
+    <None Include=".git\objects\2d\65b2c8e3b57cd6ab9560cbcb1e8d87c86e495d" />
+    <None Include=".git\objects\2e\d39bcfc94d8c1bc606779de48051fc946ff3a7" />
+    <None Include=".git\objects\2f\7cc97f3a2e83969c6214b5a698d68656cfd170" />
+    <None Include=".git\objects\31\0d5e8ba8d951211dfd2db84063290ccb35587c" />
+    <None Include=".git\objects\31\7a3a0eb7e2358323441d5aa2ad715bdedbd661" />
+    <None Include=".git\objects\32\4f70f2ba1e48efbc16c2e59eef1be35bca9c3b" />
+    <None Include=".git\objects\36\ef54606c231cdf4dfcd51c67caa0b6e60f0a7a" />
+    <None Include=".git\objects\37\a4c0548b24e656835d24ce26be2caf9ec44d80" />
+    <None Include=".git\objects\39\493b44d5103285a1ccd5d80a56937e8f2d218f" />
+    <None Include=".git\objects\39\533f0421d5b203373222b48004ecd4949291ea" />
+    <None Include=".git\objects\3b\65285438fd90747c70c6825bd627e371e29a4c" />
+    <None Include=".git\objects\3b\971e33d302da0855d79e25cc2dbc9f890a4060" />
+    <None Include=".git\objects\3c\76a245059f2f459560f204bf2410666fbe9839" />
+    <None Include=".git\objects\3c\86781bde750d5b35c157ac95a8dab4da6c1f20" />
+    <None Include=".git\objects\3d\36e182d6664f0111b05db7dd98b00dbfc3d0eb" />
+    <None Include=".git\objects\3d\6cb621c94953952dd9b7077306cc7f5d5d4dd3" />
+    <None Include=".git\objects\3d\6e72f3ae6ffe2d06f2e5697f253f9e18fd67f7" />
+    <None Include=".git\objects\3d\c06ef3cc4057524bf5d2cd49936dff789cebe8" />
+    <None Include=".git\objects\3e\ce7c5ffcf956c1c37dc02209ba2161dde2a9cb" />
+    <None Include=".git\objects\3f\de9be44ffc40b66b0e9f898dec474bd0115f02" />
+    <None Include=".git\objects\40\3f96c3b4511b2e2c162728b927d68318eac916" />
+    <None Include=".git\objects\42\57f4bc63d7cf7f5e3390e9ad6d0762050449fe" />
+    <None Include=".git\objects\44\106c42e3cfaeb9e89dc1121d6474f27cdde47f" />
+    <None Include=".git\objects\46\67042d8278e277c23f402b598dca626c8b60fc" />
+    <None Include=".git\objects\47\d2493c4f60c10842f30aaa9ee6a0cea2a63ccc" />
+    <None Include=".git\objects\4a\e98e71b7e7fc6db8658e5462762d85176759c3" />
+    <None Include=".git\objects\4a\f05694362cd04e4e02a67f50beebc52bf48f20" />
+    <None Include=".git\objects\4b\87c669d755f5c7d7da88f25e74f3df3e2c86bb" />
+    <None Include=".git\objects\4c\32ef23ce9bc6155f42aa85b0627d57d460426f" />
+    <None Include=".git\objects\4d\d4dcb9b1e27b973f394dba12c68656ec42f9fd" />
+    <None Include=".git\objects\4f\50adb057c9c969d5cebc31b57d940069a8de4a" />
+    <None Include=".git\objects\4f\9226121aec53c4a7989692af1978b949d5f36c" />
+    <None Include=".git\objects\52\27d06995a6f81159dd46f4ca37c6a5d5e890f4" />
+    <None Include=".git\objects\53\8d97ec8d6e6cbc91d06f6f960a253c2ac4a101" />
+    <None Include=".git\objects\53\dafef7dda23fc692e0fccd6ec1463080e9f772" />
+    <None Include=".git\objects\57\dbf5cdb96dce77dc866dcba1805e141be31cdd" />
+    <None Include=".git\objects\58\01856cdd7eaa47de7737c821ad06dce45aff21" />
+    <None Include=".git\objects\59\46c2320f3419f4a14a10f128d7ea7ebed5d96e" />
+    <None Include=".git\objects\5b\95905207d2a15c61230bd279b6c69d13669356" />
+    <None Include=".git\objects\5c\1a91f5cd2ff5f864569bd063774730f21d801d" />
+    <None Include=".git\objects\5c\5ef42b087f125467e2dfdf2a137b687540eaf6" />
+    <None Include=".git\objects\5c\d4a63b17f75a1160ef3a1342814712d067a338" />
+    <None Include=".git\objects\5d\ebcf92a17e3e54d7c35b83b26c9f21aa07b4f8" />
+    <None Include=".git\objects\5e\2d6fcd233d9271092249b41ff804d2a7909706" />
+    <None Include=".git\objects\5e\cfac8cdd41b8c94bd0a2197e2ba69f1f6f155f" />
+    <None Include=".git\objects\5f\8fa7123f0b16c9e3b75b8fbb75139ffe71acc9" />
+    <None Include=".git\objects\62\00cfe675bbb543579c9087afd2eac0b4ae8f9c" />
+    <None Include=".git\objects\64\f7c2ab141eb9479d33f70e785dece258385fac" />
+    <None Include=".git\objects\65\3b1cd3c055352f978237734f95ef7559c82655" />
+    <None Include=".git\objects\67\d95305cd08cad311700365bce97c0cfa0e5106" />
+    <None Include=".git\objects\69\6cfcb59e0708269d5e262285649af30775d03b" />
+    <None Include=".git\objects\6b\901219360b967a09d717c648745cf8d0cffd4c" />
+    <None Include=".git\objects\6c\dc2100b5437d4e410ad53c74b64db17e1af71e" />
+    <None Include=".git\objects\6d\a14c7069de8259be97ec4ae10e885d1506cd12" />
+    <None Include=".git\objects\6d\df0596b150c1f25343f46542b889f36d614911" />
+    <None Include=".git\objects\6e\15d404bb6aa4766cf60343ad8d0d1b58c81426" />
+    <None Include=".git\objects\6e\51d00c653a64fd96fa64e47ee530514b064522" />
+    <None Include=".git\objects\71\81e4c0ac74dc48d079282c9402306e16aaf3ed" />
+    <None Include=".git\objects\71\c1b3f09c98226ef5bc4aa0a1e4f61edb3b0171" />
+    <None Include=".git\objects\74\b4f9dc904d77732395b3a5542d14b2d9547a65" />
+    <None Include=".git\objects\75\ae3f04b02a05dc63828aaca69e756b5fbcae71" />
+    <None Include=".git\objects\76\dd023ca6dc32253342a2ca47f84eac4881b324" />
+    <None Include=".git\objects\78\46b8d725ccb55084b2c4e7540a0dd3d5e1448d" />
+    <None Include=".git\objects\79\32d73c87e78dc3c87867014e722dadb788973c" />
+    <None Include=".git\objects\7b\5e0c653c028dd3eb0fd32f0a93a7c57b876c44" />
+    <None Include=".git\objects\7b\978fb4ed12b94fb6ab9e8ec73eb436a6887b7b" />
+    <None Include=".git\objects\7d\b5d2d8f587ef78e4983b60b66b58fe842a8856" />
+    <None Include=".git\objects\7e\490339f8b70187598018483f823c8dd07c305e" />
+    <None Include=".git\objects\7e\a5c2b29f410b439386510822446739eb660e31" />
+    <None Include=".git\objects\7f\2b75c493ea1fb64e1151acd8d1e40246693d49" />
+    <None Include=".git\objects\7f\3af2dad904a4eae6799d35b0a64e8ccde63b82" />
+    <None Include=".git\objects\80\d0cf05247e4bdc6da88d52eb3b6bfc8d96566b" />
+    <None Include=".git\objects\80\e12d86f1f95f83d9c2515ace5d290b3a3b685d" />
+    <None Include=".git\objects\82\0b70682b97dc5cfd9da46d230476079d3246d7" />
+    <None Include=".git\objects\82\2d20b837239024c13fa48c5e0d5341a55312f4" />
+    <None Include=".git\objects\82\ba81edab87b9636902745fff52b4535528dceb" />
+    <None Include=".git\objects\85\78f3d03de56aa5afbb2e6a3f0a9055b075f7fd" />
+    <None Include=".git\objects\86\251dd83560e72e23c450c4d292664ecaa8ba29" />
+    <None Include=".git\objects\88\cb65adf7e306e29272f94e8fa272942cca8d9a" />
+    <None Include=".git\objects\89\f3b09035e4265ba7f3da5d7a6f71099d0333a2" />
+    <None Include=".git\objects\8c\361c92e5bab7eadca88f4ca1d148dbb9f5a211" />
+    <None Include=".git\objects\8c\927eb747a6a304db265e6753aee6c47504f604" />
+    <None Include=".git\objects\8c\cc785abbceebc2019a0683df827f26793bcb8a" />
+    <None Include=".git\objects\8c\d563b74fc78da37319b287f471c629c1a8116b" />
+    <None Include=".git\objects\90\3d4d0dc546574f2e4edeeb0073f4f27797d5f6" />
+    <None Include=".git\objects\91\24ea3feaff93cd6c61b357a66c0d97d043461d" />
+    <None Include=".git\objects\92\4cfb076f5907ef9f93ae95e7f66c43629e3dac" />
+    <None Include=".git\objects\93\af5ba5e8088da6cc74df8edcd3f8b92853b1f7" />
+    <None Include=".git\objects\93\e0dd020bbe3a195ba199372ff7522cb0560b8a" />
+    <None Include=".git\objects\93\e9e8ba993b1812e772008340cecfabdc557a51" />
+    <None Include=".git\objects\94\91a2fda28342ab358eaf234e1afe0c07a53d62" />
+    <None Include=".git\objects\95\16892b48396fafdb8a07a4f83f6017161b46fc" />
+    <None Include=".git\objects\96\ade54276433628218b8f6f699864b08b238974" />
+    <None Include=".git\objects\9c\b08fb4e46b9f6c64e9caa4f02307a9ed0e718d" />
+    <None Include=".git\objects\9d\8e76c09beb3c877b4d57bbec51d4949bbbc093" />
+    <None Include=".git\objects\9e\1e0246e624b9adf8fbcfdf2f4c1f26d64d32b7" />
+    <None Include=".git\objects\9e\f3c8e40d4fe8c684125077d46cb17217a0d270" />
+    <None Include=".git\objects\9f\32efa4dba0210ff32b549f09098b3fac28b7c0" />
+    <None Include=".git\objects\9f\811f0c2fbd9180fb737370e4ec6175cba58731" />
+    <None Include=".git\objects\a0\f9b97b2aa12669d6207f04ffe81a104b22f59a" />
+    <None Include=".git\objects\a0\ffa1ed0691958d4160e7164af7ccb6b13fc3bf" />
+    <None Include=".git\objects\a1\de17a5f87024c9ef36ee10f7f853d42286dc0c" />
+    <None Include=".git\objects\a1\ed5b3f0a7235b36fb53bfb165680518396ea50" />
+    <None Include=".git\objects\a4\41e385983dda490c4597c667b0b7395306ff86" />
+    <None Include=".git\objects\a6\7c744611907d57ffbfd12cc8c9a61794e2e435" />
+    <None Include=".git\objects\a8\81c2686b5c0dd3447c481f40da554c38ed9eea" />
+    <None Include=".git\objects\a8\e8b02a89d8365aac5a419500665ccf8df6068a" />
+    <None Include=".git\objects\a9\2acce14300246ed7da86c2b7fa81fe151d5452" />
+    <None Include=".git\objects\ab\23804f7c818b8364086bb55fddde4c2dad078d" />
+    <None Include=".git\objects\ac\14900197e0fbac4fffcab367439739c32d230a" />
+    <None Include=".git\objects\ac\a570450d284b3b8b65d268d4061f145d753eff" />
+    <None Include=".git\objects\af\062ff5dc976ca8aee6b7c9714ef2032868fd01" />
+    <None Include=".git\objects\b0\1b96ed6d94fe326d818a89b1ca344436eb5cd2" />
+    <None Include=".git\objects\b0\4462f78a4668cfc81dfea3fbecc1fe28b0aa26" />
+    <None Include=".git\objects\b3\5192628bbfefdd476eaa2581daeee357f61872" />
+    <None Include=".git\objects\b4\01c47ee28eadbe8e5eec2d3b8d2300e7f99aa8" />
+    <None Include=".git\objects\b4\6f97f68ff84364162ff54cf5f6d07b92f2f20f" />
+    <None Include=".git\objects\b4\7c2101d8244dfb3ba029a46a1092602e92bf04" />
+    <None Include=".git\objects\b4\93b1d8eeeb371466c8172143617a8aaab09298" />
+    <None Include=".git\objects\b5\6873a1ce399e7910fd2f0035d9a4eceba78e95" />
+    <None Include=".git\objects\b5\a06121b4a2ee9203ae4aabb5c557f13838c021" />
+    <None Include=".git\objects\b7\6fbd16a47ba007b6ac016fcd596e73a003a8fc" />
+    <None Include=".git\objects\b8\24a6527e708e758ad01c3dd19f7f912d691fb6" />
+    <None Include=".git\objects\b8\fb7e8645dbb7079e4608258c9db0b0d30a1854" />
+    <None Include=".git\objects\ba\1587c56aa51a2dd07a4b7a617f491480ff99b8" />
+    <None Include=".git\objects\ba\5af69e53cd84ab4216642bca9f694d628e47a0" />
+    <None Include=".git\objects\bb\27a2fcaa36c520c62d59c12ed48aad23ad088a" />
+    <None Include=".git\objects\bb\8926dfe1bb3886221ba3ddffc4251174780e06" />
+    <None Include=".git\objects\c0\17234bfcc4ba59f1322f58f144c57757544848" />
+    <None Include=".git\objects\c2\30eee724603fa0da6090d2909a1a970517cc4b" />
+    <None Include=".git\objects\c3\961081424d19e14612e13c7a8150f1f0cf7e10" />
+    <None Include=".git\objects\c3\db82a8c795108a84b7ac0d39d9f13ebc363257" />
+    <None Include=".git\objects\c4\2c5954073bcf3bff822f66514754f282d92ca1" />
+    <None Include=".git\objects\c7\0406766433a88411bf9c9f8d0607add172e0e8" />
+    <None Include=".git\objects\c9\66f4303de039dd3b8d669fc366368324f787c5" />
+    <None Include=".git\objects\cc\994d01ddfa457af8dad601ff141538afb099c9" />
+    <None Include=".git\objects\cd\237c2083963b801af4c57441463ce4f59fe825" />
+    <None Include=".git\objects\cd\7786d93488bab2c32675d1b40522ea881190bd" />
+    <None Include=".git\objects\cf\5d9af3deb7739a1de7cb6fc5df97c8b62b5d0b" />
+    <None Include=".git\objects\cf\6bc79d25f72f3d2a1abbd4928d6b92b706d75d" />
+    <None Include=".git\objects\cf\adb03dd5ae27611786435b89b6350524311f8b" />
+    <None Include=".git\objects\d1\feaeabbbdeb286c0fadf1bba0835abeb50bb16" />
+    <None Include=".git\objects\d4\0a926efad3ce78c44d8d5bda71ef092ba469d3" />
+    <None Include=".git\objects\d4\a96f7df3a5cd7582c70e30dd22014e52f3b2dc" />
+    <None Include=".git\objects\d5\1c37a3a8eb031e8caede0bdd3485ff39bd0a85" />
+    <None Include=".git\objects\d5\dde676ca66a2c20027072d06f6862cf331d892" />
+    <None Include=".git\objects\d7\3086dad2ef204e7cc9f45d8d0428ece4085dfc" />
+    <None Include=".git\objects\d8\f344caee98db575851f13189a4600e70dd435b" />
+    <None Include=".git\objects\d9\fd1b6591e226f530fc4ae2c7fa8b893880d978" />
+    <None Include=".git\objects\da\4b6c7316c5d349c4b33239f9c94eac17297669" />
+    <None Include=".git\objects\de\204625168a9ffe04b1d325a83a274310eb38ac" />
+    <None Include=".git\objects\df\a60418ec67a0a52460f5967251535582195fbb" />
+    <None Include=".git\objects\e3\67bcc8e976c2c962732a1d7f50aa135b6a8f3f" />
+    <None Include=".git\objects\e6\108075a06924c7bd079d5a379538851376b8c9" />
+    <None Include=".git\objects\e6\29fe57ca2c22d5cbc3bbfe80e6b3a9b5442bff" />
+    <None Include=".git\objects\e6\9de29bb2d1d6434b8b29ae775ad8c2e48c5391" />
+    <None Include=".git\objects\e6\e6d80365a8aa85c23f9d750583fcdff9f77927" />
+    <None Include=".git\objects\ea\7996b3cd57aeea4096d38fd2350ae705663c97" />
+    <None Include=".git\objects\eb\0f2aabd21f273018286b04094fa24120d88fe3" />
+    <None Include=".git\objects\eb\32be4156fb3cd87a98fcc4664e81914144810f" />
+    <None Include=".git\objects\ed\a613a08374c66c2f0b9185526babd431702e9d" />
+    <None Include=".git\objects\ee\1516fa584915f61a5b54842e014d8a2e7502b3" />
+    <None Include=".git\objects\ef\3b84f2a44d608eba536a1e9d34f514826e33fb" />
+    <None Include=".git\objects\f2\0090b899e166787d726a7305e8ff2c3c5972a6" />
+    <None Include=".git\objects\f5\72f26a49960aa8bd0aabaa03a3882b1164b78a" />
+    <None Include=".git\objects\f6\4cf084a6e98a0d7021c75b58e1ddfdc5024776" />
+    <None Include=".git\objects\f7\6d6f1747df16ec9b6dda4ed934c4b9ac86d7be" />
+    <None Include=".git\objects\f8\b4888565caadc7510be75682268d6c18edd6de" />
+    <None Include=".git\objects\fa\0f833fa70f5671a7d45bf9c1880f0907ca24a1" />
+    <None Include=".git\objects\fa\998f0b91b0055a6cf857771ab6b94fcf13821b" />
+    <None Include=".git\objects\fd\bf3a68603c4140b7ab14c621c750b5bd43571b" />
+    <None Include=".git\objects\fe\4fcf64a71dc2af50770c7bf1e0f2c78d4fc938" />
+    <None Include=".git\objects\pack\pack-2d0f927041342d6a1e2851a7b1b929c4b73a22ec.idx" />
+    <None Include=".git\objects\pack\pack-2d0f927041342d6a1e2851a7b1b929c4b73a22ec.pack" />
+    <None Include=".git\ORIG_HEAD" />
+    <None Include=".git\packed-refs" />
+    <None Include=".git\refs\heads\CSharpHW1" />
+    <None Include=".git\refs\heads\CSharpHW7" />
+    <None Include=".git\refs\heads\master" />
+    <None Include=".git\refs\remotes\origin\CSharpHW1" />
+    <None Include=".git\refs\remotes\origin\HEAD" />
+    <None Include=".git\refs\remotes\origin\master" />
+    <None Include=".git\refs\stash" />
+    <None Include=".vs\ConsoleApp\DesignTimeBuild\.dtbcache.v2" />
+    <None Include=".vs\ConsoleApp\FileContentIndex\0755289f-192e-4e5a-b505-47d752bd3af7.vsidx" />
+    <None Include=".vs\ConsoleApp\FileContentIndex\07fe9bb0-ef4c-4a9f-aab7-980a183fafed.vsidx" />
+    <None Include=".vs\ConsoleApp\FileContentIndex\974352e4-83e4-4134-b6d0-ac968fbaaaf4.vsidx" />
+    <None Include=".vs\ConsoleApp\FileContentIndex\a23bdec9-b78f-425a-a25b-f597b101b473.vsidx" />
+    <None Include=".vs\ConsoleApp\FileContentIndex\read.lock" />
+    <None Include=".vs\ConsoleApp\v17\.futdcache.v2" />
+    <None Include=".vs\ConsoleApp\v17\.suo" />
+    <None Include=".vs\ConsoleApp\v17\TestStore\0\011.testlog" />
+    <None Include=".vs\ConsoleApp\v17\TestStore\0\testlog.manifest" />
+    <None Include=".vs\OtusCSharpPro\DesignTimeBuild\.dtbcache.v2" />
+    <None Include=".vs\OtusCSharpPro\FileContentIndex\19cffc2d-059e-4e52-9af3-afd0dff316fc.vsidx" />
+    <None Include=".vs\OtusCSharpPro\FileContentIndex\5c04b003-5b0f-4e8d-a4c2-119b2f767fc9.vsidx" />
+    <None Include=".vs\OtusCSharpPro\FileContentIndex\eeaa3956-b2a8-48b9-81db-4c5e7b8501d1.vsidx" />
+    <None Include=".vs\OtusCSharpPro\FileContentIndex\ef3e19ce-d998-4cdc-97fd-98f0ccb61f16.vsidx" />
+    <None Include=".vs\OtusCSharpPro\FileContentIndex\read.lock" />
+    <None Include=".vs\OtusCSharpPro\v17\.futdcache.v2" />
+    <None Include=".vs\OtusCSharpPro\v17\.wsuo" />
+    <None Include=".vs\ProjectEvaluation\consoleapp.metadata.v6.1" />
+    <None Include=".vs\ProjectEvaluation\consoleapp.projects.v6.1" />
+    <None Include=".vs\ProjectSettings.json" />
+    <None Include=".vs\slnx.sqlite" />
+    <None Include=".vs\VSWorkspaceState.json" />
+    <None Include="README.md" />
+    <None Include="WebApplication\appsettings.Development.json" />
+    <None Include="WebApplication\appsettings.json" />
+    <None Include="WebApplication\obj\Debug\net7.0\WebApplication.AssemblyInfoInputs.cache" />
+    <None Include="WebApplication\obj\Debug\net7.0\WebApplication.csproj.AssemblyReference.cache" />
+    <None Include="WebApplication\obj\Debug\net7.0\WebApplication.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="WebApplication\obj\Debug\net7.0\WebApplication.RazorAssemblyInfo.cache" />
+    <None Include="WebApplication\obj\Release\net7.0\WebApplication.AssemblyInfoInputs.cache" />
+    <None Include="WebApplication\obj\Release\net7.0\WebApplication.csproj.AssemblyReference.cache" />
+    <None Include="WebApplication\obj\Release\net7.0\WebApplication.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="WebApplication\obj\Release\net7.0\WebApplication.RazorAssemblyInfo.cache" />
+    <None Include="WebApplication\Pages\Error.cshtml" />
+    <None Include="WebApplication\Pages\Index.cshtml" />
+    <None Include="WebApplication\Pages\Privacy.cshtml" />
+    <None Include="WebApplication\Pages\Shared\_Layout.cshtml" />
+    <None Include="WebApplication\Pages\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="WebApplication\Pages\_ViewImports.cshtml" />
+    <None Include="WebApplication\Pages\_ViewStart.cshtml" />
+    <None Include="WebApplication\Properties\launchSettings.json" />
+    <None Include="WebApplication\WebApplication.csproj" />
+    <None Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map" />
+    <None Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map" />
+    <None Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map" />
+    <None Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map" />
+    <None Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map" />
+    <None Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map" />
+    <None Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map" />
+    <None Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map" />
+    <None Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map" />
+    <None Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map" />
+    <None Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map" />
+    <None Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map" />
+    <None Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map" />
+    <None Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map" />
+    <None Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map" />
+    <None Include="WebApplication\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map" />
+    <None Include="WebApplication\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map" />
+    <None Include="WebApplication\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map" />
+    <None Include="WebApplication\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map" />
+    <None Include="WebApplication\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map" />
+    <None Include="WebApplication\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map" />
+    <None Include="WebApplication\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map" />
+    <None Include="WebApplication\wwwroot\lib\bootstrap\LICENSE" />
+    <None Include="WebApplication\wwwroot\lib\jquery-validation\LICENSE.md" />
+    <None Include="WebApplication\wwwroot\lib\jquery\dist\jquery.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="WebApplication\obj\Debug\net7.0\.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" />
+    <Compile Include="WebApplication\obj\Debug\net7.0\WebApplication.AssemblyInfo.cs" />
+    <Compile Include="WebApplication\obj\Debug\net7.0\WebApplication.GlobalUsings.g.cs" />
+    <Compile Include="WebApplication\obj\Debug\net7.0\WebApplication.RazorAssemblyInfo.cs" />
+    <Compile Include="WebApplication\obj\Release\net7.0\.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" />
+    <Compile Include="WebApplication\obj\Release\net7.0\WebApplication.AssemblyInfo.cs" />
+    <Compile Include="WebApplication\obj\Release\net7.0\WebApplication.GlobalUsings.g.cs" />
+    <Compile Include="WebApplication\obj\Release\net7.0\WebApplication.RazorAssemblyInfo.cs" />
+    <Compile Include="WebApplication\Pages\Error.cshtml.cs" />
+    <Compile Include="WebApplication\Pages\Index.cshtml.cs" />
+    <Compile Include="WebApplication\Pages\Privacy.cshtml.cs" />
+    <Compile Include="WebApplication\Program.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include=".git\objects\info\" />
+    <Folder Include=".git\refs\tags\" />
+    <Folder Include=".vs\ConsoleApp\FileContentIndex\merges\" />
+    <Folder Include=".vs\CSharpHW7\v17\" />
+    <Folder Include=".vs\OtusCSharpPro\FileContentIndex\merges\" />
+    <Folder Include="WebApplication\bin\Debug\net7.0\" />
+    <Folder Include="WebApplication\bin\Release\net7.0\" />
+    <Folder Include="WebApplication\obj\Debug\net7.0\refint\" />
+    <Folder Include="WebApplication\obj\Debug\net7.0\ref\" />
+    <Folder Include="WebApplication\obj\Debug\net7.0\staticwebassets\" />
+    <Folder Include="WebApplication\obj\Release\net7.0\refint\" />
+    <Folder Include="WebApplication\obj\Release\net7.0\ref\" />
+    <Folder Include="WebApplication\obj\Release\net7.0\staticwebassets\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+</Project>
