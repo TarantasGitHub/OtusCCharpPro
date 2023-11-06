@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Diagnostics;
 
 namespace Namespace;
@@ -6,13 +7,13 @@ public class Recursion
 
     public List<string> FilesWithRecursion { get; private set; }
     public long FilesWithRecursionMilliseconds { get; private set; }
-    public List<string> FilesWithOutRecursion { get; private set; }
+    public BlockingCollection<string> FilesWithOutRecursion { get; private set; }
     public long FilesWithOutRecursionMilliseconds { get; private set; }
 
     public Recursion()
     {
         FilesWithRecursion = new List<string>();
-        FilesWithOutRecursion = new List<string>();
+        FilesWithOutRecursion = new BlockingCollection<string>();
     }
 
     public void RecursiveDelete(DirectoryInfo baseDir, bool isRoot = true)
@@ -57,7 +58,7 @@ public class Recursion
         }
     }
 
-    public void DeleteWithoutRecursion(DirectoryInfo baseDir)
+    public async Task DeleteWithoutRecursion(DirectoryInfo baseDir)
     {
         var options = new EnumerationOptions
         {
@@ -77,25 +78,24 @@ public class Recursion
         var folderTreeStack = new Stack<string[]>();
 
         folderTreeStack.Push(new[] { baseDir.FullName });
-
+        var tasks = new List<Task<(bool hasChild, IEnumerable<string> items)>>();
         do
         {
             currentLayer = new List<string>();
             hasChild = false;
+            tasks = new List<Task<(bool hasChild, IEnumerable<string> items)>>();
+
             foreach (var path in folderTreeStack.Peek())
             {
-                var di = new DirectoryInfo(path);
-                if (di.Exists)
+                tasks.Add(PrepareFolderLayer(path, hasChild, options));
+            }
+            await Task.WhenAll(tasks);
+            foreach (var task in tasks)
+            {
+                currentLayer.AddRange(task.Result.items);
+                if (!hasChild && task.Result.hasChild)
                 {
-                    currentLayer.AddRange(
-                        di//.GetDirectories("*.*", options)
-                        .EnumerateDirectories("*", options)
-                        //.Where(di => di.FullName != "/proc/5717/cwd")
-                        .Select(d => d.FullName));
-                    if (!hasChild && di.EnumerateDirectories("*", options).Any())
-                    {
-                        hasChild = true;
-                    }
+                    hasChild = true;
                 }
             }
             folderTreeStack.Push(currentLayer.ToArray());
@@ -103,29 +103,57 @@ public class Recursion
 
         while (folderTreeStack.Count > 0)
         {
+            var folderTasks = new List<Task>();
             foreach (var path in folderTreeStack.Pop())
             {
-                var di = new DirectoryInfo(path);
-                if (di.Exists)
-                {
-                    var files = di.GetFiles("*", options);
-                    foreach (var file in files)
-                    {
-                        try
-                        {
-                            file.IsReadOnly = false;
-                            DoSomeThingWithFile(string.Format("\t{0}", file.FullName), false);
-                            // file.Delete();
-                        }
-                        catch { }
-                    }
-                    DoSomeThingWithFile(di.FullName, false);
-                    // di.Delete();
-                }
+                folderTasks.Add(FileProcessing(path, options));
             }
+            await Task.WhenAll(folderTasks);
         }
         sw.Stop();
         FilesWithOutRecursionMilliseconds = sw.ElapsedMilliseconds;
+    }
+
+    private async Task FileProcessing(string path, EnumerationOptions options)
+    {
+        var di = new DirectoryInfo(path);
+        if (di.Exists)
+        {
+            var files = di.GetFiles("*", options);
+            var tasks = new List<Task>();
+            foreach (var file in files)
+            {
+                tasks.Add(Task.Run(() =>
+                {
+                    if (!file.IsReadOnly)
+                    {
+                        DoSomeThingWithFile(string.Format("\t{0}", file.FullName), false);
+                        // file.Delete();
+                    }
+                }));
+            }
+            await Task.WhenAll(tasks);
+            DoSomeThingWithFile(di.FullName, false);
+            // di.Delete();
+        }
+    }
+
+    private static Task<(bool hasChild, IEnumerable<string> items)> PrepareFolderLayer(string path, bool hasChild, EnumerationOptions options)
+    {
+        var di = new DirectoryInfo(path);
+        IEnumerable<string> items = Array.Empty<string>();
+
+        if (di.Exists)
+        {
+            items = di.EnumerateDirectories("*", options).Select(d => d.FullName);
+
+            if (!hasChild && items.Any())
+            {
+                hasChild = true;
+            }
+        }
+
+        return Task.FromResult((hasChild, items));
     }
 
     private void DoSomeThingWithFile(string text, bool recursion)

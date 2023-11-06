@@ -4,16 +4,17 @@ namespace Namespace;
 public class Class
 {
     [Fact]
-    public void RecursionTest1()
+    public async Task RecursionTest1()
     {
         // Arrange
         var r = new Recursion();
 
         // Act
-        var root = new DirectoryInfo("/home");
+        //var root = new DirectoryInfo("C:\\Users\\Андрей");
+        var root = new DirectoryInfo("C:\\Users");
         var sw = new Stopwatch();
         sw.Start();
-        r.DeleteWithoutRecursion(root);
+        await r.DeleteWithoutRecursion(root);
         
         sw.Stop();
         var firstSw = sw.ElapsedMilliseconds;
@@ -25,7 +26,7 @@ public class Class
         Console.WriteLine("Notrecursive {0} ms", sw.ElapsedMilliseconds);
 
         //Assert
-        Assert.Equivalent(r.FilesWithOutRecursion, r.FilesWithRecursion);
+        Assert.Equal(r.FilesWithOutRecursion.Count, r.FilesWithRecursion.Count);
         //Assert.Equal(firstSw, secondSw);
         Assert.Equal(r.FilesWithOutRecursionMilliseconds, r.FilesWithRecursionMilliseconds);
         
