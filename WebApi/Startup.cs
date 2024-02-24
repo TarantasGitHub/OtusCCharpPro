@@ -1,12 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using ClassLibrary;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace WebApi
 {
@@ -16,8 +15,28 @@ namespace WebApi
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+#pragma warning disable ASP0000 // Do not call 'IServiceCollection.BuildServiceProvider' in 'ConfigureServices'
+            var configuration = services.BuildServiceProvider().GetService<IConfiguration>();
+
+            if (configuration == null)
+            {
+                throw new Exception("Not fountproget onfiguration.");
+            }
+#pragma warning restore ASP0000 // Do not call 'IServiceCollection.BuildServiceProvider' in 'ConfigureServices'
+            string? connectionString;
+
+            connectionString = configuration?.GetConnectionString("DefaultConnection");
+            var migrationsAssembly = typeof(ClassLibraryDependencyInjections).Assembly.GetName().Name;
+
+            services.AddDbContext<WebDbContext>(
+            options => options
+            .UseNpgsql(connectionString, sql => sql.MigrationsAssembly(migrationsAssembly))
+            .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
+            );
+
             services.AddControllers();
             services.AddSwaggerGen();
+            services.AddInfrastructure();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
