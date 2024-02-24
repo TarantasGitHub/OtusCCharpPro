@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebClient", "WebClient\WebC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary", "ClassLibrary\ClassLibrary.csproj", "{2DC7B128-B5D5-48CB-B2EB-09C7379724A8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibraryContracts", "ClassLibraryContracts\ClassLibraryContracts.csproj", "{08C55F2D-FEA7-41A4-9C5E-EE5ABB3C22FB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryContracts", "ClassLibraryContracts\ClassLibraryContracts.csproj", "{08C55F2D-FEA7-41A4-9C5E-EE5ABB3C22FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -3,7 +3,6 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace WebClient
@@ -72,7 +71,7 @@ namespace WebClient
 
         private static async Task GetCustomer()
         {
-            Console.WriteLine("Введите CustomerId(q for exit):");
+            Console.WriteLine("Введите CustomerId:");
             var stringId = Console.ReadLine();
 
             if (Int64.TryParse(stringId, out Int64 id))
