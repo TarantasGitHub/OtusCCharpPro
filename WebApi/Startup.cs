@@ -20,7 +20,7 @@ namespace WebApi
 
             if (configuration == null)
             {
-                throw new Exception("Not fountproget onfiguration.");
+                throw new Exception("Not found progect configuration.");
             }
 #pragma warning restore ASP0000 // Do not call 'IServiceCollection.BuildServiceProvider' in 'ConfigureServices'
             string? connectionString;
