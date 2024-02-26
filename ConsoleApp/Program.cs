@@ -11,7 +11,7 @@ public class Program
         var calculatorCollection = new List<ICalculation>();
         calculatorCollection.Add(new SequentialCalculation());
         calculatorCollection.Add(new ParallelCalculation());
-        calculatorCollection.Add(new TaskCalculation(10000));
+        calculatorCollection.Add(new TaskCalculation(100000));
 
         Int64 result = 0;
         foreach (var calculator in calculatorCollection)

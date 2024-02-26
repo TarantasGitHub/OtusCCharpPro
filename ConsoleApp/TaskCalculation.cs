@@ -17,29 +17,45 @@ public class TaskCalculation : BaseCalculation
 
     private async Task<Int64> CalculateSumAsync(IEnumerable<int> ints)
     {
+        var intsArray = ints.ToArray();
         List<Task<Int64>> tasks = new List<Task<Int64>>();
-
-        int i = 0;
-        int[] taskInts = new int[_pageSize];
-        foreach (var item in ints)
+        int pageCount = intsArray.Length / _pageSize;
+        for (int j = 0; j < pageCount; j++)
         {
-            taskInts[i++] = item;
-            if (i == _pageSize)
-            {
-                int[] tmpInts = new int[_pageSize];
-                Array.Copy(taskInts, tmpInts, _pageSize);
-                Task<Int64> t = Task.Run<Int64>(() => PartCalculation(tmpInts));
-                tasks.Add(t);
-                taskInts = new int[_pageSize];
-                i = 0;
-            }
+            int[] tmpInts = new int[_pageSize];
+            Array.Copy(intsArray, j * _pageSize, tmpInts, 0, _pageSize);
+            tasks.Add(Task.Run<Int64>(() => PartCalculation(tmpInts)));
         }
-        if (i > 0)
+        var tail = intsArray.Length % _pageSize;
+        if (tail > 0)
         {
-            Task<Int64> t = Task.Run<Int64>(() => PartCalculation(taskInts));
-            tasks.Add(t);
+            int[] tmpInts = new int[tail];
+            Array.Copy(intsArray, pageCount * _pageSize, tmpInts, 0, tail);
+            tasks.Add(Task.Run<Int64>(() => PartCalculation(tmpInts)));
         }
         await Task.WhenAll(tasks);
+
+        //int i = 0;
+        //int[] taskInts = new int[_pageSize];
+        //foreach (var item in ints)
+        //{
+        //    taskInts[i++] = item;
+        //    if (i == _pageSize)
+        //    {
+        //        int[] tmpInts = new int[_pageSize];
+        //        Array.Copy(taskInts, tmpInts, _pageSize);
+        //        Task<Int64> t = Task.Run<Int64>(() => PartCalculation(tmpInts));
+        //        tasks.Add(t);
+        //        taskInts = new int[_pageSize];
+        //        i = 0;
+        //    }
+        //}
+        //if (i > 0)
+        //{
+        //    Task<Int64> t = Task.Run<Int64>(() => PartCalculation(taskInts));
+        //    tasks.Add(t);
+        //}
+        //await Task.WhenAll(tasks);
         return tasks.Select(t => t.Result).Sum();
     }
 
