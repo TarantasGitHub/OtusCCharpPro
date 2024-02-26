@@ -10,6 +10,13 @@ public class TaskCalculation : BaseCalculation
     protected override Int64 CalculateSum(IEnumerable<int> ints)
     {
         //var tail = ints.Count() % this._pageSize;
+        Task<Int64> t = CalculateSumAsync(ints);
+        t.Wait();
+        return t.Result;
+    }
+
+    private async Task<Int64> CalculateSumAsync(IEnumerable<int> ints)
+    {
         List<Task<Int64>> tasks = new List<Task<Int64>>();
 
         int i = 0;
@@ -19,16 +26,20 @@ public class TaskCalculation : BaseCalculation
             taskInts[i++] = item;
             if (i == _pageSize)
             {
-                tasks.Add(Task.Run<Int64>(() => PartCalculation(taskInts)));
+                int[] tmpInts = new int[_pageSize];
+                Array.Copy(taskInts, tmpInts, _pageSize);
+                Task<Int64> t = Task.Run<Int64>(() => PartCalculation(tmpInts));
+                tasks.Add(t);
                 taskInts = new int[_pageSize];
                 i = 0;
             }
         }
         if (i > 0)
         {
-            tasks.Add(Task.Run<Int64>(() => PartCalculation(taskInts)));
+            Task<Int64> t = Task.Run<Int64>(() => PartCalculation(taskInts));
+            tasks.Add(t);
         }
-        Task.WhenAll(tasks);
+        await Task.WhenAll(tasks);
         return tasks.Select(t => t.Result).Sum();
     }
 
