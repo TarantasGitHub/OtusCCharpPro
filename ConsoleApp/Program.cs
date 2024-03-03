@@ -4,7 +4,7 @@ using ConsoleApp;
 namespace Consoleapp;
 public class Program
 {
-    public static Task Main()
+    public static async Task Main()
     {
         // var ints = new List<int>() { 1, 2, 3, 4, 5 };
         var ints = DataGenerator.Generate(100000000);
@@ -16,7 +16,7 @@ public class Program
         Int64 result = 0;
         foreach (var calculator in calculatorCollection)
         {
-            result = calculator.Sum(ints);
+            result = await calculator.Sum(ints);
             Console.WriteLine("Calculator: {0}, Sum: {1}, Milliseconds: {2}",
                 calculator.GetType().Name,
                 result,
@@ -24,6 +24,6 @@ public class Program
             );
         }
         Console.ReadKey();
-        return Task.CompletedTask;
+        //return Task.CompletedTask;
     }
 }

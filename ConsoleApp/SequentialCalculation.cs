@@ -2,8 +2,8 @@
 
 public class SequentialCalculation : BaseCalculation
 {
-    protected override Int64 CalculateSum(IEnumerable<int> ints)
+    protected override Task<Int64> CalculateSum(IEnumerable<int> ints)
     {
-        return ints.Sum(i => (Int64)i);
+        return Task.FromResult(ints.Sum(i => (Int64)i));
     }
 }
