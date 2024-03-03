@@ -8,7 +8,7 @@ public static class DataGenerator
 
         Random random = new Random();
 
-        for(int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++)
         {
             result.Add(random.Next(from, to));
         }

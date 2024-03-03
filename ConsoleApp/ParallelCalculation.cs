@@ -1,6 +1,6 @@
 ﻿namespace ConsoleApp;
 
-public class ParallelCalculation: BaseCalculation
+public class ParallelCalculation : BaseCalculation
 {
     protected override Task<Int64> CalculateSum(IEnumerable<int> ints)
     {
