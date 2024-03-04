@@ -54,6 +54,40 @@ Windows 10
 	Calculator: MultiThreadCalculation, Sum: 4993838722, Milliseconds: 218
 	Calculator: ThreadPoolCalculation, Sum: 4993838722, Milliseconds: 100
 
+При использовании настроенного итератора удалось ускорить относительно LINQ запросов:
+	ConsoleApp.exe 100000 1000 4
+	Calculator: SequentialCalculation, Sum: 50082874, Milliseconds: 3
+	Calculator: SequentialCalculationLINQ, Sum: 50082874, Milliseconds: 25
+	Calculator: PLINQCalculation, Sum: 50082874, Milliseconds: 47
+	Calculator: TaskCalculation, Sum: 50082874, Milliseconds: 10
+	Calculator: TaskCalculationLINQ, Sum: 50082874, Milliseconds: 9
+	Calculator: MultiThreadCalculation, Sum: 50082874, Milliseconds: 37
+	Calculator: MultiThreadCalculationLINQ, Sum: 50082874, Milliseconds: 39
+	Calculator: ThreadPoolCalculation, Sum: 50082874, Milliseconds: 3
+	Calculator: ThreadPoolCalculationLINQ, Sum: 50082874, Milliseconds: 4
+	
+	ConsoleApp.exe 1000000 10000 4
+	Calculator: SequentialCalculation, Sum: 499400537, Milliseconds: 15
+	Calculator: SequentialCalculationLINQ, Sum: 499400537, Milliseconds: 39
+	Calculator: PLINQCalculation, Sum: 499400537, Milliseconds: 58
+	Calculator: TaskCalculation, Sum: 499400537, Milliseconds: 11
+	Calculator: TaskCalculationLINQ, Sum: 499400537, Milliseconds: 18
+	Calculator: MultiThreadCalculation, Sum: 499400537, Milliseconds: 33
+	Calculator: MultiThreadCalculationLINQ, Sum: 499400537, Milliseconds: 56
+	Calculator: ThreadPoolCalculation, Sum: 499400537, Milliseconds: 4
+	Calculator: ThreadPoolCalculationLINQ, Sum: 499400537, Milliseconds: 13
+	
+	ConsoleApp.exe 10000000 100000 4
+	Calculator: SequentialCalculation, Sum: 4996030812, Milliseconds: 104
+	Calculator: SequentialCalculationLINQ, Sum: 4996030812, Milliseconds: 157
+	Calculator: PLINQCalculation, Sum: 4996030812, Milliseconds: 154
+	Calculator: TaskCalculation, Sum: 4996030812, Milliseconds: 19
+	Calculator: TaskCalculationLINQ, Sum: 4996030812, Milliseconds: 105
+	Calculator: MultiThreadCalculation, Sum: 4996030812, Milliseconds: 45
+	Calculator: MultiThreadCalculationLINQ, Sum: 4996030812, Milliseconds: 252
+	Calculator: ThreadPoolCalculation, Sum: 4996030812, Milliseconds: 10
+	Calculator: ThreadPoolCalculationLINQ, Sum: 4996030812, Milliseconds: 97
+
 Ubuntu 22.04.4 LTS:
 	// Количество элементов массива, количество записей на поток, количество потоков
 	./ConsoleApp 100000 1000 4
