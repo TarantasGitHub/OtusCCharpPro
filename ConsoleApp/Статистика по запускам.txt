@@ -1,0 +1,55 @@
+Запуск на:
+	Процессор: Intel(R) Core(TM) i5-2410M CPU @ 2.30GHz   2.30 GHz
+	Память: 16,0 ГБ
+	Тип системы: 64-разрядная операционная система, процессор x64
+
+Windows 10
+	// Количество элементов массива, количество записей на поток, количество потоков
+	ConsoleApp.exe 100000 1000 4
+	Calculator: SequentialCalculation, Sum: 49957462, Milliseconds: 29
+	Calculator: PLINQCalculation, Sum: 49957462, Milliseconds: 56
+	Calculator: TaskCalculation, Sum: 49957462, Milliseconds: 16
+	Calculator: MultiThreadCalculation, Sum: 49957462, Milliseconds: 42
+	Calculator: ThreadPoolCalculation, Sum: 49957462, Milliseconds: 6
+
+	ConsoleApp.exe 1000000 1000 4
+	Calculator: SequentialCalculation, Sum: 500034485, Milliseconds: 42
+	Calculator: PLINQCalculation, Sum: 500034485, Milliseconds: 62
+	Calculator: TaskCalculation, Sum: 500034485, Milliseconds: 39
+	Calculator: MultiThreadCalculation, Sum: 500034485, Milliseconds: 337
+	Calculator: ThreadPoolCalculation, Sum: 500034485, Milliseconds: 14
+
+	ConsoleApp.exe 1000000 10000 4
+	Calculator: SequentialCalculation, Sum: 499782654, Milliseconds: 41
+	Calculator: PLINQCalculation, Sum: 499782654, Milliseconds: 61
+	Calculator: TaskCalculation, Sum: 499782654, Milliseconds: 27
+	Calculator: MultiThreadCalculation, Sum: 499782654, Milliseconds: 66
+	Calculator: ThreadPoolCalculation, Sum: 499782654, Milliseconds: 16
+
+	ConsoleApp.exe 1000000 100000 4
+	Calculator: SequentialCalculation, Sum: 499970634, Milliseconds: 44
+	Calculator: PLINQCalculation, Sum: 499970634, Milliseconds: 59
+	Calculator: TaskCalculation, Sum: 499970634, Milliseconds: 29
+	Calculator: MultiThreadCalculation, Sum: 499970634, Milliseconds: 30
+	Calculator: ThreadPoolCalculation, Sum: 499970634, Milliseconds: 16
+
+	ConsoleApp.exe 10000000 10000 4
+	Calculator: SequentialCalculation, Sum: 4994377603, Milliseconds: 174
+	Calculator: PLINQCalculation, Sum: 4994377603, Milliseconds: 156
+	Calculator: TaskCalculation, Sum: 4994377603, Milliseconds: 133
+	Calculator: MultiThreadCalculation, Sum: 4994377603, Milliseconds: 532
+	Calculator: ThreadPoolCalculation, Sum: 4994377603, Milliseconds: 99
+
+	ConsoleApp.exe 10000000 100000 4
+	Calculator: SequentialCalculation, Sum: 4994003463, Milliseconds: 169
+	Calculator: PLINQCalculation, Sum: 4994003463, Milliseconds: 153
+	Calculator: TaskCalculation, Sum: 4994003463, Milliseconds: 115
+	Calculator: MultiThreadCalculation, Sum: 4994003463, Milliseconds: 260
+	Calculator: ThreadPoolCalculation, Sum: 4994003463, Milliseconds: 98
+	
+	ConsoleApp.exe 10000000 1000000 4
+	Calculator: SequentialCalculation, Sum: 4993838722, Milliseconds: 175
+	Calculator: PLINQCalculation, Sum: 4993838722, Milliseconds: 157
+	Calculator: TaskCalculation, Sum: 4993838722, Milliseconds: 135
+	Calculator: MultiThreadCalculation, Sum: 4993838722, Milliseconds: 218
+	Calculator: ThreadPoolCalculation, Sum: 4993838722, Milliseconds: 100

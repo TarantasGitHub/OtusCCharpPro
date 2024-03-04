@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace ConsoleApp;
+﻿namespace ConsoleApp;
 
 public class MultiThreadCalculation : BaseCalculation
 {
@@ -16,29 +14,27 @@ public class MultiThreadCalculation : BaseCalculation
     protected override Task<Int64> CalculateSum(IEnumerable<int> ints)
     {
         var sum = new SumObject { Sum = 0L };
-        int i = 0;
-        var semaphore = new Semaphore(this._threadCounts, this._threadCounts);
-        for (; i < ints.Count(); i += _threadSize)
+        
+        using (var semaphore = new Semaphore(this._threadCounts, this._threadCounts))
         {
-            var threadContext = new ThreadContext
+            for (int i = 0; i < ints.Count(); i += _threadSize)
             {
-                Ints = ints,
-                From = i,
-                To = i + _threadSize > ints.Count() ? ints.Count() : i + _threadSize,
-                BaseSum = sum,
-                SemaphoreSlim = semaphore
-            };
-            Thread thread = new Thread(threadContext.ThreadCalculateSum);
-            thread.Start();
-            thread.Join();
+                var threadContext = new ThreadContext
+                {
+                    Ints = ints,
+                    From = i,
+                    To = i + _threadSize > ints.Count() ? ints.Count() : i + _threadSize,
+                    BaseSum = sum,
+                    Sem = semaphore
+                };
+                Thread thread = new Thread(threadContext.ThreadCalculateSum);
+                thread.Start();
+                thread.Join();
+            }
         }
-        semaphore.Close();
-        semaphore.Dispose();
 
         return Task.FromResult(sum.Sum);
     }
-
-
 
     private class ThreadContext
     {
@@ -46,15 +42,15 @@ public class MultiThreadCalculation : BaseCalculation
         public int From { get; init; }
         public int To { get; init; }
         public SumObject BaseSum { get; init; }
-        public Semaphore SemaphoreSlim { get; init; }
+        public Semaphore Sem { get; init; }
 
 
         public void ThreadCalculateSum()
         {
-            SemaphoreSlim.WaitOne();
+            Sem.WaitOne();
             Int64 localSum = Ints.Skip(From).Take(To - From).Sum(x => (Int64)x);
             Interlocked.Add(ref BaseSum.Sum, localSum);
-            SemaphoreSlim.Release();
+            Sem.Release();
         }
     }
 

@@ -4,15 +4,35 @@ using ConsoleApp;
 namespace Consoleapp;
 public class Program
 {
-    public static async Task Main()
+    public static async Task Main(string[] args)
     {
+        int itemCount = 1000000;
+        int threadItemsCount = 100000;
+        int threadCount = 6;
+
+        if (args.Length > 0)
+        {
+            switch (args.Length)
+            {
+                case 3:
+                    int.TryParse(args[2], out threadCount);
+                    goto case 2;
+                case 2:
+                    int.TryParse(args[1], out threadItemsCount);
+                    goto case 1;
+                case 1:
+                    int.TryParse(args[0], out itemCount);
+                    break;
+            }
+        }
         // var ints = new List<int>() { 1, 2, 3, 4, 5 };
-        var ints = DataGenerator.Generate(1000000);
+        var ints = DataGenerator.Generate(itemCount);
         var calculatorCollection = new List<ICalculation>();
         calculatorCollection.Add(new SequentialCalculation());
-        calculatorCollection.Add(new ParallelCalculation());
-        calculatorCollection.Add(new TaskCalculation(100000));
-        calculatorCollection.Add(new MultiThreadCalculation(100000, 50));
+        calculatorCollection.Add(new PLINQCalculation(threadCount));
+        calculatorCollection.Add(new TaskCalculation(threadItemsCount));
+        calculatorCollection.Add(new MultiThreadCalculation(threadItemsCount, threadCount));
+        calculatorCollection.Add(new ThreadPoolCalculation(threadItemsCount, threadCount));
 
         Int64 result = 0;
         foreach (var calculator in calculatorCollection)
@@ -23,6 +43,8 @@ public class Program
                 result,
                 calculator.Milliseconds
             );
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
         Console.ReadKey();
         //return Task.CompletedTask;
