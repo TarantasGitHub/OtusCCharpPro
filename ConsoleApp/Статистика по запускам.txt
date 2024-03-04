@@ -53,3 +53,47 @@ Windows 10
 	Calculator: TaskCalculation, Sum: 4993838722, Milliseconds: 135
 	Calculator: MultiThreadCalculation, Sum: 4993838722, Milliseconds: 218
 	Calculator: ThreadPoolCalculation, Sum: 4993838722, Milliseconds: 100
+
+Ubuntu 22.04.4 LTS:
+	// Количество элементов массива, количество записей на поток, количество потоков
+	./ConsoleApp 100000 1000 4
+	Calculator: SequentialCalculation, Sum: 49996538, Milliseconds: 27
+	Calculator: PLINQCalculation, Sum: 49996538, Milliseconds: 44
+	Calculator: TaskCalculation, Sum: 49996538, Milliseconds: 21
+	Calculator: MultiThreadCalculation, Sum: 49996538, Milliseconds: 42
+	Calculator: ThreadPoolCalculation, Sum: 49996538, Milliseconds: 6
+
+	./ConsoleApp 1000000 10000 4
+	Calculator: SequentialCalculation, Sum: 499457890, Milliseconds: 39
+	Calculator: PLINQCalculation, Sum: 499457890, Milliseconds: 57
+	Calculator: TaskCalculation, Sum: 499457890, Milliseconds: 26
+	Calculator: MultiThreadCalculation, Sum: 499457890, Milliseconds: 43
+	Calculator: ThreadPoolCalculation, Sum: 499457890, Milliseconds: 14
+
+	./ConsoleApp 1000000 100000 4
+	Calculator: SequentialCalculation, Sum: 499305655, Milliseconds: 40
+	Calculator: PLINQCalculation, Sum: 499305655, Milliseconds: 53
+	Calculator: TaskCalculation, Sum: 499305655, Milliseconds: 28
+	Calculator: MultiThreadCalculation, Sum: 499305655, Milliseconds: 26
+	Calculator: ThreadPoolCalculation, Sum: 499305655, Milliseconds: 14	
+	
+	./ConsoleApp 10000000 10000 4
+	Calculator: SequentialCalculation, Sum: 4995396579, Milliseconds: 164
+	Calculator: PLINQCalculation, Sum: 4995396579, Milliseconds: 155
+	Calculator: TaskCalculation, Sum: 4995396579, Milliseconds: 127
+	Calculator: MultiThreadCalculation, Sum: 4995396579, Milliseconds: 372
+	Calculator: ThreadPoolCalculation, Sum: 4995396579, Milliseconds: 94
+	
+	./ConsoleApp 10000000 100000 4
+	Calculator: SequentialCalculation, Sum: 4995923149, Milliseconds: 159
+	Calculator: PLINQCalculation, Sum: 4995923149, Milliseconds: 159
+	Calculator: TaskCalculation, Sum: 4995923149, Milliseconds: 122
+	Calculator: MultiThreadCalculation, Sum: 4995923149, Milliseconds: 289
+	Calculator: ThreadPoolCalculation, Sum: 4995923149, Milliseconds: 94
+	
+	./ConsoleApp 10000000 1000000 4
+	Calculator: SequentialCalculation, Sum: 4994497858, Milliseconds: 164
+	Calculator: PLINQCalculation, Sum: 4994497858, Milliseconds: 156
+	Calculator: TaskCalculation, Sum: 4994497858, Milliseconds: 121
+	Calculator: MultiThreadCalculation, Sum: 4994497858, Milliseconds: 209
+	Calculator: ThreadPoolCalculation, Sum: 4994497858, Milliseconds: 118
