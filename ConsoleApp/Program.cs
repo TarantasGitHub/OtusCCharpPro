@@ -29,10 +29,14 @@ public class Program
         var ints = DataGenerator.Generate(itemCount);
         var calculatorCollection = new List<ICalculation>();
         calculatorCollection.Add(new SequentialCalculation());
+        calculatorCollection.Add(new SequentialCalculationLINQ());
         calculatorCollection.Add(new PLINQCalculation(threadCount));
         calculatorCollection.Add(new TaskCalculation(threadItemsCount));
+        calculatorCollection.Add(new TaskCalculationLINQ(threadItemsCount));
         calculatorCollection.Add(new MultiThreadCalculation(threadItemsCount, threadCount));
+        calculatorCollection.Add(new MultiThreadCalculationLINQ(threadItemsCount, threadCount));
         calculatorCollection.Add(new ThreadPoolCalculation(threadItemsCount, threadCount));
+        calculatorCollection.Add(new ThreadPoolCalculationLINQ(threadItemsCount, threadCount));
 
         Int64 result = 0;
         foreach (var calculator in calculatorCollection)

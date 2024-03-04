@@ -1,0 +1,33 @@
+﻿namespace ConsoleApp;
+
+public class TaskCalculationLINQ : BaseCalculation
+{
+    private readonly int _pageSize;
+    public TaskCalculationLINQ(int pageSize = 100)
+    {
+        this._pageSize = pageSize;
+    }
+
+    protected override async Task<Int64> CalculateSum(IEnumerable<int> ints)
+    {
+        List<Task<Int64>> tasks = new List<Task<Int64>>();
+
+        for (int i = 0; i < ints.Count(); i += _pageSize)
+        {
+            int from = i;
+            int to = i + _pageSize;
+            if (to > ints.Count())
+            { to = ints.Count(); }
+
+            tasks.Add(Task.Run<Int64>(() => PartCalculation(ints, from, to)));
+        }
+
+        await Task.WhenAll(tasks);
+        return tasks.Select(t => t.Result).Sum();
+    }
+
+    private Int64 PartCalculation(IEnumerable<int> ints, int from, int to)
+    {
+        return ints.Skip(from).Take(to - from).Sum(x => (Int64)x);
+    }
+}

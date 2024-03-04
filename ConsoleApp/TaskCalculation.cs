@@ -1,33 +1,40 @@
-﻿namespace ConsoleApp;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class TaskCalculation : BaseCalculation
+namespace ConsoleApp
 {
-    private readonly int _pageSize;
-    public TaskCalculation(int pageSize = 100)
+    internal class TaskCalculation : BaseCalculation
     {
-        this._pageSize = pageSize;
-    }
-
-    protected override async Task<Int64> CalculateSum(IEnumerable<int> ints)
-    {
-        List<Task<Int64>> tasks = new List<Task<Int64>>();
-
-        for (int i = 0; i < ints.Count(); i += _pageSize)
+        private readonly int _pageSize;
+        public TaskCalculation(int pageSize = 100)
         {
-            int from = i;
-            int to = i + _pageSize;
-            if (to > ints.Count())
-            { to = ints.Count(); }
-
-            tasks.Add(Task.Run<Int64>(() => PartCalculation(ints, from, to)));
+            this._pageSize = pageSize;
         }
 
-        await Task.WhenAll(tasks);
-        return tasks.Select(t => t.Result).Sum();
-    }
+        protected override async Task<Int64> CalculateSum(IEnumerable<int> ints)
+        {
+            List<Task<Int64>> tasks = new List<Task<Int64>>();
 
-    private Int64 PartCalculation(IEnumerable<int> ints, int from, int to)
-    {
-        return ints.Skip(from).Take(to - from).Sum(x => (Int64)x);
+            for (int i = 0; i < ints.Count(); i += _pageSize)
+            {
+                int from = i;
+                int to = i + _pageSize;
+                if (to > ints.Count())
+                { to = ints.Count(); }
+
+                tasks.Add(Task.Run<Int64>(() => PartCalculation(ints, from, to)));
+            }
+
+            await Task.WhenAll(tasks);
+            return tasks.Select(t => t.Result).Sum();
+        }
+
+        private Int64 PartCalculation(IEnumerable<int> ints, int from, int to)
+        {
+            return ints.GetSum(from, to);
+        }
     }
 }

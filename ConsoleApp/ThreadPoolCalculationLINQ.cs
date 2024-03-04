@@ -1,11 +1,11 @@
 ﻿namespace ConsoleApp
 {
-    internal class ThreadPoolCalculation : BaseCalculation
+    internal class ThreadPoolCalculationLINQ : BaseCalculation
     {
         private readonly int _threadSize;
         private readonly int _threadCounts;
 
-        public ThreadPoolCalculation(int threadSize = 100, int threadCounts = 2)
+        public ThreadPoolCalculationLINQ(int threadSize = 100, int threadCounts = 2)
         {
             this._threadSize = threadSize;
             this._threadCounts = threadCounts;
@@ -14,7 +14,7 @@
         protected override Task<Int64> CalculateSum(IEnumerable<int> ints)
         {
             var sum = new SumObject { Sum = 0L };
-
+            
             using (var semaphore = new Semaphore(this._threadCounts, this._threadCounts))
             {
                 using (var countdownEvent = new CountdownEvent(1))
@@ -31,7 +31,7 @@
                         };
                         countdownEvent.AddCount();
                         ThreadPool.QueueUserWorkItem(delegate (object context)
-                        {
+                        {                            
                             try { ThreadPoolCalculateSum(context); }
                             finally { countdownEvent.Signal(); }
                         }, threadContext);
@@ -49,7 +49,7 @@
             if (threadContext is ThreadContext tc)
             {
                 tc.Sem.WaitOne();
-                Int64 localSum = tc.Ints.GetSum(tc.From, tc.To);
+                Int64 localSum = tc.Ints.Skip(tc.From).Take(tc.To - tc.From).Sum(x => (Int64)x);
                 Interlocked.Add(ref tc.BaseSum.Sum, localSum);
                 tc.Sem.Release();
             }
