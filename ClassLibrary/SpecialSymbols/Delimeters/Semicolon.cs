@@ -1,4 +1,4 @@
-namespace ClassLibrary.Delimeters
+namespace ClassLibrary.SpecialSymbols.Delimeters
 {
     /// <summary>
     /// Точка с запятой
@@ -9,7 +9,7 @@ namespace ClassLibrary.Delimeters
 
         protected override long Parse(long index, char[] text, Delimeter? parent = null)
         {
-            this.EndIndex = --index;
+            EndIndex = --index;
             return index;
         }
     }

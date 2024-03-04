@@ -1,10 +1,13 @@
-namespace ClassLibrary.Delimeters
+using ClassLibrary.SpecialSymbols.Delimeters;
+
+namespace ClassLibrary.SpecialSymbols.Delimeters
 {
     /// <summary>
     /// Базовый разделитель
     /// </summary>
     public abstract class Delimeter
     {
+        public char Symbol { get; init; }
         public long StartIndex { get; set; }
         public long EndIndex { get; set; }
 
@@ -17,7 +20,7 @@ namespace ClassLibrary.Delimeters
 
         public void Parse(string text)
         {
-            this.Parse(0, text.ToCharArray(), this);
+            Parse(0, text.ToCharArray(), this);
         }
 
         protected virtual long Parse(long index, char[] text, Delimeter? parent = null)
@@ -36,9 +39,9 @@ namespace ClassLibrary.Delimeters
                     delimeter.StartIndex = index;
                     index = delimeter.Parse(++index, text, this);
                 }
-                else if (this.closingCharacter == text[index])
+                else if (closingCharacter == text[index])
                 {
-                    this.EndIndex = index;
+                    EndIndex = index;
                     return index;
                 }
             }
@@ -47,7 +50,7 @@ namespace ClassLibrary.Delimeters
 
         protected Delimeter characterAnalyser(char symbol)
         {
-            if(symbol == this.closingCharacter)
+            if (symbol == closingCharacter)
             {
                 return this;
             }
@@ -63,6 +66,8 @@ namespace ClassLibrary.Delimeters
                     return new Colon();
                 case ',':
                     return new Comma();
+                case '=':
+                    return new Equals();
                 default:
                     return this;
             }

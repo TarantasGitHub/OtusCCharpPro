@@ -1,4 +1,4 @@
-namespace ClassLibrary.Delimeters
+namespace ClassLibrary.SpecialSymbols.Delimeters
 {
     /// <summary>
     /// Одинарная ковычка
