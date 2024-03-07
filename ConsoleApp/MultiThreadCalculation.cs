@@ -17,19 +17,28 @@
 
             using (var semaphore = new Semaphore(this._threadCounts, this._threadCounts))
             {
-                for (int i = 0; i < ints.Count(); i += _threadSize)
+                using (var countdownEvent = new CountdownEvent(1))
                 {
-                    var threadContext = new ThreadContext
+                    for (int i = 0; i < ints.Count(); i += _threadSize)
                     {
-                        Ints = ints,
-                        From = i,
-                        To = i + _threadSize > ints.Count() ? ints.Count() : i + _threadSize,
-                        BaseSum = sum,
-                        Sem = semaphore
-                    };
-                    Thread thread = new Thread(threadContext.ThreadCalculateSum);
-                    thread.Start();
-                    thread.Join();
+                        var threadContext = new ThreadContext
+                        {
+                            Ints = ints,
+                            From = i,
+                            To = i + _threadSize > ints.Count() ? ints.Count() : i + _threadSize,
+                            BaseSum = sum,
+                            Sem = semaphore
+                        };
+                        countdownEvent.AddCount();
+                        Thread thread = new Thread(() =>
+                        {
+                            try { threadContext.ThreadCalculateSum(); }
+                            finally { countdownEvent.Signal(); }
+                        });
+                        thread.Start();
+                    }
+                    countdownEvent.Signal();
+                    countdownEvent.Wait();
                 }
             }
 
