@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Text;
+using ClassLibrary.SpecialSymbols;
 using ClassLibrary.SpecialSymbols.Delimeters;
 
 namespace ClassLibrary.Serializers
@@ -8,11 +9,9 @@ namespace ClassLibrary.Serializers
     {
         public CustomJsonSerializer()
         {
-            this.SerializeContainer = new ClassLibrary.SpecialSymbols.Containers.Braces();
-            this.NameValueDelimeter = new Colon();
+            this.SerializeContainer = new ClassLibrary.SpecialSymbols.Containers.BracesContainer();
+            this.NameValueDelimeter = new SpecialSymbols.Colon();
         }
-
-        
 
         public override T Deserialize<T>(string json)
         {
@@ -33,11 +32,11 @@ namespace ClassLibrary.Serializers
                     {
                         string value;
                         var topItem = braces.Childs.Pop();
-                        if (topItem is DoubleQuotes dq)
+                        if (topItem is SpecialSymbols.Delimeters.DoubleQuotes dq)
                         {
                             value = json.Substring((int)dq.StartIndex, (int)(dq.EndIndex - dq.StartIndex));
                         }
-                        else if (topItem is Colon c)
+                        else if (topItem is SpecialSymbols.Delimeters.Colon c)
                         {
                             value = json.Substring((int)c.StartIndex, (int)(prevItem.EndIndex - c.StartIndex));
                         }
@@ -46,9 +45,5 @@ namespace ClassLibrary.Serializers
             }
             return result;
         }
-
-        
-
-        
     }
 }

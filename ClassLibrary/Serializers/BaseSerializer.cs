@@ -1,5 +1,5 @@
 ﻿using ClassLibrary.SpecialSymbols.Containers;
-using ClassLibrary.SpecialSymbols.Delimeters;
+using ClassLibrary.SpecialSymbols;
 using System.Reflection;
 using System.Text;
 
@@ -9,7 +9,7 @@ namespace ClassLibrary.Serializers
     {
         public BaseContainer SerializeContainer { get; init; }
 
-        public Delimeter NameValueDelimeter { get; init; }
+        public SpecialSymbol NameValueDelimeter { get; init; }
 
         public virtual string Serialize<T>(T obj)
         {
@@ -29,7 +29,7 @@ namespace ClassLibrary.Serializers
             Type t = obj.GetType();
             var fields = t.GetFields();
             var properties = t.GetProperties();
-            var sb = new StringBuilder(SerializeContainer.OpenningSymbol.ToString());
+            var sb = new StringBuilder(SerializeContainer.OpenningSymbol.Symbol);
             foreach (var field in fields)
             {
                 sb.Append(string.Format("\"{0}\"{1}{2},", field.Name, NameValueDelimeter.Symbol, getFieldStringValue(obj, field)));
@@ -46,7 +46,7 @@ namespace ClassLibrary.Serializers
             {
                 sb.Length -= 1;
             }
-            sb.Append(SerializeContainer.ClosingSymbol);
+            sb.Append(SerializeContainer.ClosingSymbol.Symbol);
             return sb.ToString();
         }
 

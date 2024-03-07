@@ -2,7 +2,7 @@
 {
     public class BaseContainer
     {
-        public char OpenningSymbol { get; init; }
-        public char ClosingSymbol { get; init; }
+        public SpecialSymbol OpenningSymbol { get; init; }
+        public SpecialSymbol ClosingSymbol { get; init; }
     }
 }
